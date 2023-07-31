@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spotify_ui/data/data.dart';
 import 'package:flutter_spotify_ui/widgets/widgets.dart';
+
+import 'screens/playlist_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF121212),
         dialogBackgroundColor: const Color(0xFF121212),
         primaryColor: Colors.black,
+        hintColor: const Color(0xFF1DB954),
         iconTheme: const IconThemeData().copyWith(color: Colors.white),
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
@@ -76,6 +80,11 @@ class Shell extends StatelessWidget {
             child: Row(
               children: [
                 SideMenu(),
+                Expanded(
+                  child: PlaylistScreen(
+                    playlist: lofihiphopPlaylist,
+                  ),
+                ),
               ],
             ),
           ),
