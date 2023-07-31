@@ -91,11 +91,11 @@ class _LibraryPlaylistsState extends State<_LibraryPlaylists> {
     _scrollController = ScrollController();
   }
 
-  // @override
-  // void dispose() {
-  //   _scrollController?.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _scrollController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
