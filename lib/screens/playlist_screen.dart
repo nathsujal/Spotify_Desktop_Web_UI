@@ -105,8 +105,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             stops: const [0, 0.3],
           ),
         ),
-        child: Scrollbar(
+        child: RawScrollbar(
           thumbVisibility: true,
+          thumbColor: Colors.grey.withOpacity(0.8),
+          radius: const Radius.circular(5.0),
           controller: _scrollController,
           child: ListView(
             controller: _scrollController,

@@ -4,7 +4,9 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spotify_ui/data/data.dart';
+import 'package:flutter_spotify_ui/models/current_track.dart';
 import 'package:flutter_spotify_ui/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/playlist_screen.dart';
 
@@ -15,7 +17,12 @@ void main() async {
     await DesktopWindow.setMinWindowSize(const Size(600, 800));
   }
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CurrentTrackModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -76,11 +83,11 @@ class Shell extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const Expanded(
+          Expanded(
             child: Row(
               children: [
-                SideMenu(),
-                Expanded(
+                if (MediaQuery.of(context).size.width > 800) const SideMenu(),
+                const Expanded(
                   child: PlaylistScreen(
                     playlist: lofihiphopPlaylist,
                   ),
@@ -88,11 +95,7 @@ class Shell extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: 84.0,
-            width: double.infinity,
-            color: Colors.blue,
-          )
+          const CurrentTrack(),
         ],
       ),
     );
